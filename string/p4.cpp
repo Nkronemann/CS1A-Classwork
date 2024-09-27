@@ -4,5 +4,5 @@ int main() {
 string w1;
     cout << "Please input a word\n";
     cin >> w1;
-    cout <<"Your word is:  " << w1.length () << "bytes long\n";
+    cout <<"Your word is: " << w1.length () << " bytes long\n";
 }
