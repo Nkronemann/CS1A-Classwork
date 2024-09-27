@@ -7,6 +7,7 @@ cin >> x;
 if (x==1) {
 s = "Hello World";
 s[2] = 'p';
+cout << "This is whats in byte 6: " << s[6] << endl;
 cout << s << endl;
 } else if (x==2) {
 w1 = "abc";

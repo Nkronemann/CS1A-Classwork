@@ -50,5 +50,25 @@ else if (shapetype=="triangle") {
 
 
 }
+else if (shapetype=="Circle") {
+ cout << "Are you trying to find the area or the perimeter?\n";
+    cin >> calctype;
+ if (calctype=="area") {
+            cout << "Please inpout the radius of your circle\n";
+                cin >> length;
+                    area=(3.14*length^2);
+                        cout << "The area of your circle is:  " << area << endl;
 
+
+        }
+        else if (calctype=="perimeter") {
+            cout << "Please input the radius of your circle\n";
+                cin >> length;
+                    perimeter=(2*3.14*length)
+
+                    cout << "The perimeter of your triangle is:  " << perimeter << endl;
+
+
+
+}
 }
