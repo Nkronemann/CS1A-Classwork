@@ -3,7 +3,7 @@ using namespace std;
 
 int main() {
     int i; 
-    for (i=20;i>0;i--) {
+    for (i=2;i>=20;i+=2) {
     if (i%2==0) {
         cout << i << endl;
     }
