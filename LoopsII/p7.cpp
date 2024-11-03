@@ -4,16 +4,12 @@ using namespace std;
 
 
 int main() {
-    ofstream outfile("out7.txt");
-    int lines, i, current = 0;
-    cin >> lines;
-for (i = 1; i <= lines; i++) {
-while (current<=i) {
-    current++;
-    cout << i;
-}
-outfile << endl;
+    int x;
+    cin >> x;
+for (int row = 1; row <= x; row++) {
+    for (int j = 1; j <= i; j++) {
+    cout << j;
     }
-
-    outfile.close();
+    cout << endl;
+}
 }
