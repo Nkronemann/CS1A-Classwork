@@ -1,10 +1,8 @@
 #include <iostream>
 #include <fstream>
-#include <string>
-
 using namespace std;
 
-void startabbrev(const string& line, ofstream& outFile) {
+void startabbrev(string line, ofstream & outFile) {
     string abbr;
     if (line.length() > 0) {
         abbr += toupper(line[0]);
@@ -18,8 +16,8 @@ void startabbrev(const string& line, ofstream& outFile) {
 }
 
 int main() {
-    ifstream inFile("p2inp2.txt");
-    ofstream outFile("p2out2.txt");
+    ifstream inFile("input2.txt");
+    ofstream outFile("output2.txt");
     string line;
     while (getline(inFile, line)) {
     startabbrev(line, outFile);

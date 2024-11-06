@@ -1,56 +1,42 @@
 #include <iostream>
 #include <fstream>
-#include <string>
+
 using namespace std;
 
-bool isSpace(char c);
-void processLine(const string &line, ofstream &outFile) {
-{
-    int wordCount = 0;
-    string result;
-    bool inWord = false;
-    int wordStart = 0;
+int main() {
 
-    for (int i = 0; i <= line.length(); i++)
-    {
-        if (i == line.length() || isSpace(line[i]))
-        {
-            if (inWord)
-            {
-                wordCount++;
-                int wordLength = i - wordStart;
+    // setup
+ifstream FileInput("input1.txt");
+ofstream FileOutput("output1.txt");
+string line;
 
-                if (wordCount > 1)
-                {
-                    result += " ";
-                }
-                if (wordCount == 2)
-                {
-                    result += string(wordLength, '*');
-                }
-                else
-                {
-                    result += line.substr(wordStart, wordLength);
-                }
-                inWord = false;
-            }
-        }
-        else if (!inWord)
-        {
-            wordStart = i;
-            inWord = true;
+    //reading Fileinput and doing the thing
+while(getline(FileInput, line)) {
+    string word1="";
+    string word2="";
+    bool IsSpace = false;
+
+    //check each character
+    for (int i = 0; i < line.length(); i++){
+        if (line[i] == ' ' and !IsSpace) {
+            IsSpace = true;
+        } else if (!IsSpace){
+            //build first word
+            word1 += line[i];
+        } else {
+            //build second word
+            word2 += line[i];
         }
     }
-    outFile << result << endl;
-}
-int main()
-{
-    ifstream inFile("input1.txt");
-    ofstream outFile("output1.txt");
-
-    while (getline(inFile, line))
-    {
-        processLine(line, outFile);
+//replace all characters in second word with *
+for (int i = 0; i < word2.length(); i++) {
+    word2[i] = '*';
     }
+    //output to file
+if (!word1.empty()) {
+    FileOutput << word1 << " " << word2 << endl;
 }
+}
+FileInput.close();
+FileOutput.close();
 }
