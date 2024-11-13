@@ -19,4 +19,4 @@ int main(){
 int n;
 cin >> n;
 printpattern(n);
-        } 
+} 

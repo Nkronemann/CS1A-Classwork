@@ -1,22 +1,32 @@
 #include <iostream>
-
+#include <fstream>
 using namespace std;
 
-void printpattern(int rows) {
-//int stuff
-int middle = 1;
-int count = 1;
-//first
-for (int i = 1; i <= rows; i++) {
-int reverse = count;
-while (count<=middle) {
-    cout << count << " ";
-    count++;
-        }
-        }
+
+
+string PalPyrRow(int row){
+    string result = " ";
+    for (int i = 1; i <= row; ++i) {
+    result += (char)(i + '0');  
+}
+    for (int i = row - 1; i >= 1; --i) {
+    result += (char)(i + '0');  
+}
+    return result;
+}
+
+void MakePalPyr(int n) {
+    ofstream outFile("p2.txt");
+
+    for (int i = 1; i <= n; ++i) {
+    outFile << PalPyrRow(i) << endl;
+}
+
+    outFile.close();
 }
 int main(){
-int n;
-cin >> n;
-printpattern(n);
-        } 
+    int n;
+    cin >> n;
+
+    MakePalPyr(n);
+}
