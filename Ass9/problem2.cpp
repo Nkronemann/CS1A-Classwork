@@ -7,7 +7,7 @@ using namespace std;
 string PalPyrRow(int row){
     string result = " ";
     for (int i = 1; i <= row; ++i) {
-    result += (char)(i + '0');  
+        result += (char)(i + '0');  
 }
     for (int i = row - 1; i >= 1; --i) {
     result += (char)(i + '0');  
@@ -27,6 +27,5 @@ void MakePalPyr(int n) {
 int main(){
     int n;
     cin >> n;
-
     MakePalPyr(n);
 }

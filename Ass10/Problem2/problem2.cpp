@@ -3,29 +3,35 @@
 
 using namespace std;
 
+int findmajoritynum(int numb[], int n) {
+    // loop over each number
+    for (int i = 0; i < n; i++) {
+        int count = 0;
+            //count the amount of times each number shwos up
+            for (int j = 0; j < n; j++) {
+                if (numb[j] == numb[i]) {
+                    count++;
+                }
+            }
+            //if count is more than n/2
+        if (count > n / 2) {
+            return numb[i];
+        }
+    }
+    return -1; // if there is no majority
+}
+
 int main() {
     //int stuff
-    int size = 0;
-    int i;
-    int count = 0;
-    int temp = 0;
-    //file stuff
-    ifstream a("p2.txt");
-    fstream ao("p2out.txt");
-//check for size of p2.txt
-while (a >> i) {
-    size++;
+ifstream input("p2.txt");
+ofstream output("p2out.txt");
+    int size = 5;
+    int nums[size];
+    int n = 0;
+// end int stuff
+while (input >> nums[n] and n < size) {
+    n++;
 }
-//set all parts in an array to 0 to not break the code
-int majority[size];
-for (i = 0; i < size; i++) {
-    majority[i] = 0;
-}
-//input the text into the array
- for (int i = 0; i < size; i++) {
-            a >> majority[i];
-        }
-//nested for loop when outside loop when its on a number
-//inside loop checks for duplicates
-//increase count of number for each time it has occured
+int majoritynum = findmajoritynum(nums, n);
+output << majoritynum;
 }
