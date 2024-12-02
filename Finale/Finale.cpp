@@ -28,16 +28,32 @@ void DisplayTask (string ToDoArray[], int taskcount) {
     }
 }
 //---------------------------------------------------//
+string RemoveTask (string ToDoArray[]) {
+    int numselection = 0;
+    cout << "Please choose the number of a task to remove.\n";
+    cin >> numselection;
+    ToDoArray[numselection--] = " ";
+    return ToDoArray[numselection];
+}
+//---------------------------------------------------//l
+void CompleteTask (string CompletedTasks, int taskcount) {
+
+}
+//---------------------------------------------------//
 int main(){
     //int stuff
     int choice = 0;
     int TaskCount = 0;
     string ToDoList[100];
+    string Completelist[100];
     //end int//
 //---------------------------------------------------//
     //String Array Setup//
         for (int i = 0; i < 100; i++){
         ToDoList[i] = " ";
+        }
+         for (int i = 0; i < 100; i++){
+        Completelist[i] = " ";
         }
     //End String Array Setup//
 //---------------------------------------------------//
@@ -54,10 +70,10 @@ int main(){
                 DisplayTask(ToDoList, TaskCount);
                 break;
             case 3:
-
+                RemoveTask (ToDoList);
+                TaskCount--;
                 break;
             case 4:
-
                 break;
             case 5:
 
