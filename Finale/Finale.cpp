@@ -35,28 +35,36 @@ string RemoveTask (string ToDoArray[]) {
     ToDoArray[numselection--] = " ";
     return ToDoArray[numselection];
 }
-//---------------------------------------------------//l
+//---------------------------------------------------//
 void CompleteTask (string CompletedTasks, int taskcount) {
 
 }
+//---------------------------------------------------//
+void SaveToFile (string ToDoArray[], int taskcount) {
+    ofstream output("Save.txt");
+
+for (int i = 0; i < 100; i++) {
+    output << ToDoArray[i] << endl;
+}
+}
+//---------------------------------------------------//
+
+//---------------------------------------------------//
+
 //---------------------------------------------------//
 int main(){
     //int stuff
     int choice = 0;
     int TaskCount = 0;
     string ToDoList[100];
-    string Completelist[100];
     //end int//
-//---------------------------------------------------//
+
     //String Array Setup//
         for (int i = 0; i < 100; i++){
         ToDoList[i] = " ";
         }
-         for (int i = 0; i < 100; i++){
-        Completelist[i] = " ";
-        }
     //End String Array Setup//
-//---------------------------------------------------//
+
     //start programs//
     while (choice != 7) {
         Menu();
@@ -76,10 +84,18 @@ int main(){
             case 4:
                 break;
             case 5:
-
+                SaveToFile(ToDoList, TaskCount);
                 break;
             case 6:
-
+            //---------------------------//Clean out Array
+                for (int i = 0; i < 100; i++){
+                    ToDoList[i] = " ";
+                }
+            //---------------------------// Then actually start
+                ifstream input("Finale.cpp");
+                for (int i = 0; i < 100; i++) {
+                    getline(input, )
+                }
                 break;
             case 7:
             cout << "Ending Program.\n";
