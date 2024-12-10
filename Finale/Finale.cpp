@@ -21,25 +21,30 @@ string AddTask (string ToDoArray[], int taskcount) {
     return ToDoArray[taskcount];
     }
 //---------------------------------------------------//
-void DisplayTask (string ToDoArray[], int taskcount) {
+void DisplayTask (string ToDoArray[], string CompletedTasks[], int taskcount) {
     cout << "To-Do list:\n";
     for (int i = 0; i < taskcount; i++) {
-        cout << i + 1 << ". " << ToDoArray[i] << endl;
+        cout << i + 1 << ". " << ToDoArray[i];
+        if (CompletedTasks[i] != "N") {
+            cout << "{Completed}" << endl;
+        } else {
+            cout << endl;
+        }
     }
 }
 //---------------------------------------------------//
-string RemoveTask (string ToDoArray[]) {
-    int numselection = 0;
-    cout << "Please choose the number of a task to remove.\n";
-    cin >> numselection;
-    ToDoArray[numselection--] = " ";
+string RemoveTask (string ToDoArray[], int numselection) {
+    ToDoArray[numselection - 1] = " ";
     return ToDoArray[numselection];
+}
+string RemoveComplete (string CompletedTasks[], int numselection) {
+    CompletedTasks[numselection - 1] = " ";
+    return CompletedTasks[numselection];
 }
 //---------------------------------------------------//
 void CompleteTask (string ToDoArray[], string CompletedTasks[], int taskcount) {
     //---------------------------// int stuff
     int TaskToComplete;
-
     //---------------------------// display what program needs to be remove
     for (int i = 0; i < taskcount; i++) {
         cout << i + 1 << ". " << ToDoArray[i] << endl;
@@ -47,13 +52,11 @@ void CompleteTask (string ToDoArray[], string CompletedTasks[], int taskcount) {
     //---------------------------// actually remove stuff now
     cout << "Please select the task you would like to have be marked as complete:\n";
     cin >> TaskToComplete;
-    if (CompletedTasks[TaskToComplete]!="C") {
-    CompletedTasks[TaskToComplete] = "C";
+    if (CompletedTasks[TaskToComplete--]!="C") {
+    CompletedTasks[TaskToComplete--] = "C";
     } else {
         cout << "This task has already been completed please try again!\n" << endl << endl;
     }
-
-
 }
 //---------------------------------------------------//
 void SaveToFile (string ToDoArray[], string CompleteTask[], int taskcount) {
@@ -61,10 +64,14 @@ void SaveToFile (string ToDoArray[], string CompleteTask[], int taskcount) {
 
     for (int i = 0; i < 100; i++) {
         output << ToDoArray[i] << endl;
-            if (ToDoArray[i]!=" ") {
+            if (CompleteTask[i]!="N") {
                 output << CompleteTask[i] << endl;
+            } else if (ToDoArray[i]!=" ") {
+                output << "N" << endl;
             }
+            
     }
+
 }
 //---------------------------------------------------//
 
@@ -72,7 +79,9 @@ void SaveToFile (string ToDoArray[], string CompleteTask[], int taskcount) {
 int main(){
     //int stuff
     ifstream inputfile("Save.txt");
+    int count = 100;
     int choice = 0;
+    int secchoice = 0;
     int TaskCount = 0;
     string ToDoList[100];
     string CompleteList[100];
@@ -98,17 +107,28 @@ int main(){
                 TaskCount++;
                 break;
             case 2:
-                DisplayTask(ToDoList, TaskCount);
+                DisplayTask(ToDoList, CompleteList, TaskCount);
                 break;
             case 3:
-                RemoveTask (ToDoList);
+                cout << "Please choose the number of a task to remove.\n";
+                cin >> secchoice;
+                RemoveTask (ToDoList, secchoice);
+                RemoveComplete (CompleteList, secchoice);
                 TaskCount--;
+
+            //Cleaning up empty spaces program//
+
+            ToDoList[secchoice - 1] = ToDoList[secchoice];
+            CompleteList[secchoice - 1] = CompleteList[secchoice];
+            ToDoList[secchoice] = " ";
+            CompleteList[secchoice] = " ";
 
                 break;
             case 4:
                 CompleteTask(ToDoList,CompleteList, TaskCount);
                 break;
             case 5:
+                cout << "SAVED!" << endl;
                 SaveToFile(ToDoList, CompleteList, TaskCount);
                 break;
             case 6:
@@ -120,6 +140,11 @@ int main(){
                 while (inputfile >> inputext and TaskCount < 100) {
                     if (inputext != "N" and inputext != "C") {
                         ToDoList[TaskCount++]=inputext;
+                    }
+                }
+                while (inputfile >> inputext and count < 100) {
+                    if (inputext == "N" or inputext == "C") {
+                        CompleteList[count++]=inputext;
                     }
                 }
                 break;

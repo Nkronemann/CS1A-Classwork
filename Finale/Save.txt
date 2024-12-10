@@ -1,13 +1,12 @@
 Walk
 N
-Run
-C
-Breathe
+ 
+ 
+Die
 N
-Swim
-C
-Fall
+Breath
 N
+ 
  
  
  
